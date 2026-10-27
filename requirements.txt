@@ -1,0 +1,6 @@
+torch
+torchvision
+snntorch
+numpy
+matplotlib
+datasets
