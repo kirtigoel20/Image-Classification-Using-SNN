@@ -1,58 +1,108 @@
-# Image Classification Using Spiking Neural Networks (SNNs)
+# Spike-Based Image Classification Using Spiking Neural Networks
+
 
 ## 📌 Project Overview
 
-This project explores image classification using Spiking Neural Networks (SNNs), a type of neural network inspired by the way biological neurons communicate through discrete spikes.
+This project explores image classification using Spiking Neural Networks (SNNs), inspired by the information-processing mechanisms of biological neurons.
 
-The project implements SNN models using PyTorch and snnTorch to investigate how spiking neurons can be applied to image classification tasks.
+The project investigates different spiking neuron models and learning strategies using PyTorch and snnTorch. It is designed to compare Leaky Integrate-and-Fire (LIF) and Adaptive Leaky Integrate-and-Fire (ALIF) neurons, along with surrogate-gradient learning and Reward-Modulated Spike-Timing-Dependent Plasticity (R-STDP).
+
+The experiments focus on the MNIST and CIFAR-10 image datasets.
 
 ## 🎯 Objectives
 
-- Understand the fundamentals of Spiking Neural Networks.
-- Implement spiking neuron models for image classification.
-- Explore Leaky Integrate-and-Fire (LIF) and Adaptive Leaky Integrate-and-Fire (ALIF) neurons.
-- Experiment with surrogate gradient learning for training spiking neural networks.
-- Evaluate model performance through experiments.
+- Implement SNN architectures for image classification.
+- Compare LIF and ALIF neuron models.
+- Explore surrogate-gradient learning and R-STDP.
+- Investigate Poisson rate coding and direct input encoding.
+- Visualize spike activity and membrane potential dynamics.
+- Analyze model accuracy, training behavior, and computational time.
 
 ## 🛠️ Technologies Used
 
 - Python
 - PyTorch
 - snnTorch
+- Torchvision
 - NumPy
 - Matplotlib
+- Hugging Face Datasets
 - Google Colab
 
-## 🧠 Methodology
+## 🧠 Model Architecture
 
-The project follows these main steps:
+The SNN architecture consists of:
 
-1. Load and preprocess the image dataset.
-2. Convert the input images into a suitable representation for the SNN.
-3. Build the neural network using spiking neuron models.
-4. Train the network using the implemented learning approach.
-5. Evaluate the model and analyze the experimental results.
+| Layer | Description | Neurons |
+|---|---|---:|
+| Input | Encoded image input | 784 for MNIST; 2304-dimensional features for CIFAR-10 |
+| Hidden | Fully connected spiking layer | 256 |
+| Output | Fully connected spiking layer | 10 |
 
-## 🏗️ Model Architecture
+The SNN contains 266 spiking neurons per model, excluding the input representation.
 
-The project explores a neural network architecture consisting of an input layer, a hidden layer, and an output layer for image classification.
+For CIFAR-10, a convolutional neural network (CNN) backbone extracts image features before they are passed to the SNN.
 
-The network uses spiking neuron dynamics to process inputs and generate class predictions.
+## 🔬 Experimental Design
 
-## 📊 Experiments and Results
+The notebook explores combinations of the following components.
 
-This project includes experiments exploring different SNN configurations and learning approaches.
+### 1. Spiking Neuron Models
 
-Quantitative results, accuracy comparisons, and visualizations will be documented here based on the experiments conducted in the notebook.
+- **LIF (Leaky Integrate-and-Fire):** Models membrane potential dynamics and spike generation.
+- **ALIF (Adaptive Leaky Integrate-and-Fire):** Incorporates an adaptive firing threshold.
 
-## 🚀 How to Run
+### 2. Learning Strategies
 
-1. Open the notebook `SNN_Image_Classification.ipynb` in Google Colab.
-2. Install any required dependencies that are not already available.
-3. Run the notebook cells in sequence.
-4. Review the training process, predictions, and experimental results.
+- **Surrogate Gradient:** Uses a differentiable approximation of the spike function to enable gradient-based learning.
+- **R-STDP:** Explores reward-modulated spike-timing-dependent weight updates.
 
-## 📂 Repository Structure
+### 3. Spike Encoding
+
+- **Poisson Rate Coding:** Represents input intensities through stochastic spike generation.
+- **Direct Encoding:** Repeats continuous input values across simulation timesteps.
+
+### 4. Datasets
+
+- **MNIST:** Handwritten digit classification.
+- **CIFAR-10:** Classification of images across ten object categories.
+
+The notebook defines eight planned experiment configurations covering the two datasets, two neuron models, and two learning strategies. The successful execution and evaluation of each configuration must be verified before drawing comparative conclusions.
+
+## 📊 Visualizations and Analysis
+
+The notebook includes visualizations for:
+
+- SNN architecture and neuron counts.
+- LIF versus ALIF membrane potential dynamics.
+- Spike encoding strategies.
+- Training accuracy and loss.
+- Final test accuracy comparisons.
+- Training time and efficiency analysis.
+- Confusion matrix analysis.
+
+Quantitative results and comparisons should be added after the corresponding experiments have executed successfully.
+
+## 🚀 How to Run the Project
+
+The notebook is designed to run in Google Colab.
+
+1. Open `SNN_Image_Classification.ipynb` in Google Colab.
+2. Enable a GPU runtime if available.
+3. Install the required packages:
+
+   ```python
+   !pip install snntorch datasets
+   ```
+
+4. Run the notebook cells in sequence.
+5. Verify that the dataset loaders initialize successfully.
+6. Execute the training and evaluation experiments.
+7. Review the generated visualizations and measured results.
+
+**Note:** Dataset access, package versions, GPU availability, and notebook execution state may affect reproducibility.
+
+## 📁 Repository Structure
 
 ```text
 SNN-Image-Classification/
@@ -62,14 +112,15 @@ SNN-Image-Classification/
 
 ## 🔮 Future Improvements
 
-- Compare the performance of different spiking neuron models.
-- Explore additional datasets and network configurations.
-- Improve model performance through hyperparameter tuning.
-- Investigate the energy-efficiency advantages of SNNs.
+- Complete and validate all planned experiments.
+- Improve dataset-loading reliability.
+- Compare neuron models and learning strategies using consistent evaluation settings.
+- Add verified test accuracy, training time, and confusion matrices.
+- Explore larger SNN architectures and additional encoding strategies.
 
 ## 👩‍💻 Author
 
 **Kirti Goel**
 
-B.Tech Computer Science and Engineering  
+B.Tech in Computer Science and Engineering  
 Jaypee University of Information Technology (JUIT)
